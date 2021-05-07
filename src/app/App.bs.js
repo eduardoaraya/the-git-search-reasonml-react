@@ -7,7 +7,9 @@ var Header$Project = require("./components/Header/Header.bs.js");
 function App(Props) {
   return React.createElement("div", undefined, React.createElement(Header$Project.make, {}), React.createElement("div", {
                   className: "content"
-                }, React.createElement(List$Project.make, {})));
+                }, React.createElement(List$Project.make, {})), React.createElement("footer", {
+                  className: "d-flex center align-center"
+                }, "copyrights"));
 }
 
 var make = App;

@@ -5,5 +5,8 @@ let make = () => {
         <div className="content">
             <List/>
         </div>
+        <footer className="d-flex center align-center">
+            {React.string("copyrights")}
+        </footer>
     </div>
 };
