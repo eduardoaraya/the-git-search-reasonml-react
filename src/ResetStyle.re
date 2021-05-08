@@ -14,6 +14,9 @@ let style = {j|
     padding:10px 20px;
     background: #FFF;
     box-shadow: 0px 4px 4px rgba(47, 37, 68, 0.15);
+    position: fixed;
+    width: 100%;
+    top: 0;
   }
   .header.header .header-area {
     max-width: 1290px;
@@ -26,7 +29,7 @@ let style = {j|
     box-shadow: inset 0px 0px 20px -3px rgba(0, 0, 0, .25);
     min-height: 100vh;
   }
-  button {
+  button.btn {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -76,9 +79,15 @@ let style = {j|
     justify-content: center;
     align-items: center;
   }
+  .body-wrapper {
+    min-height: calc(100vh - 36px);
+    padding-top: 104px;
+  }
   footer {
+    margin-top: 25px;
     position: relative;
-    top: -36px;
     height: 36px;
+    background: #FFF;
+    box-shadow: 0px -4px 4px rgba(47, 37, 68, 0.15);
   }
 |j};

@@ -1,16 +1,23 @@
 'use strict';
 
 var React = require("react");
+var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
 var Card$Project = require("../Card/Card.bs.js");
 
 function List(Props) {
+  var cards = Props.cards;
   return React.createElement("div", {
               className: "d-flex wrapper",
               style: {
                 paddingTop: "35px",
                 width: "100%"
               }
-            }, React.createElement(Card$Project.make, {}), React.createElement(Card$Project.make, {}), React.createElement(Card$Project.make, {}), React.createElement(Card$Project.make, {}), React.createElement(Card$Project.make, {}));
+            }, Belt_Array.map(cards, (function (card) {
+                    return React.createElement(Card$Project.make, {
+                                card: card,
+                                key: card.id
+                              });
+                  })));
 }
 
 var make = List;
