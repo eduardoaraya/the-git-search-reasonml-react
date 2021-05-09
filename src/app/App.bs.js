@@ -20,15 +20,9 @@ function App(Props) {
   var setBodyStyle = match$1[1];
   React.useEffect((function () {
           return (function (param) {
-                    if (listCards.length !== 0) {
-                      return Curry._1(setBodyStyle, (function (param) {
-                                    return logoBg;
-                                  }));
-                    } else {
-                      return Curry._1(setBodyStyle, (function (param) {
-                                    return resultBg;
-                                  }));
-                    }
+                    return Curry._1(setBodyStyle, (function (param) {
+                                  return resultBg;
+                                }));
                   });
         }), [listCards]);
   return React.createElement("div", undefined, React.createElement("div", {

@@ -5,13 +5,15 @@ var React = require("react");
 function Card(Props) {
   var card = Props.card;
   return React.createElement("div", {
+              className: "card",
               style: {
                 background: "#FFF",
-                height: "273px",
-                margin: "10px",
-                width: "200px",
+                margin: "15px",
+                maxWidth: "295px",
+                minWidth: "295px",
                 borderRadius: "10px",
-                boxShadow: "0px 0px 6px rgba(47, 37, 68, 0.25)"
+                boxShadow: "0px 0px 6px rgba(47, 37, 68, 0.25)",
+                flex: "1"
               }
             }, React.createElement("div", {
                   className: "picture",
@@ -29,10 +31,11 @@ function Card(Props) {
                     }, card.login), React.createElement("span", {
                       className: "card-profile"
                     }, React.createElement("a", {
+                          className: "link",
                           href: card.html_url
                         }, card.html_url)), React.createElement("span", {
                       className: "card-score"
-                    }, card.score), React.createElement("button", {
+                    }, "Score: " + card.score), React.createElement("button", {
                       className: "btn"
                     }, "Ver mais")));
 }

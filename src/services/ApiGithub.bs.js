@@ -8,6 +8,7 @@ function get(user, setData) {
   return fetch(url + user).then(function (response) {
                   return response.json();
                 }).then(function (jsonResponse) {
+                console.log(jsonResponse);
                 Curry._1(setData, jsonResponse.items);
                 return Promise.resolve(true);
               }).catch(function (_err) {

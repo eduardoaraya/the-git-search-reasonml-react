@@ -9,7 +9,7 @@ function List(Props) {
   return React.createElement("div", {
               className: "d-flex wrapper",
               style: {
-                paddingTop: "35px",
+                padding: "35px 0px",
                 width: "100%"
               }
             }, Belt_Array.map(cards, (function (card) {

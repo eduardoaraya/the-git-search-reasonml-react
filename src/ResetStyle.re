@@ -1,4 +1,6 @@
-let reasonReactBlue = "#48a9dc";
+let primary = "#8C56C2";
+let secundary = "#03CADA";
+
 let style = {j|
   * {
     margin: 0;
@@ -9,6 +11,9 @@ let style = {j|
   body {
     width: 100%;
     background: #F1F1EF;
+  }
+  a.link {
+    color: $secundary;
   }
   header.header {
     padding:10px 20px;
@@ -33,9 +38,12 @@ let style = {j|
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-    background: #222;
+    background: $primary;
     box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: bolder;
   }
   input {
     position: relative;
@@ -73,7 +81,7 @@ let style = {j|
     flex-wrap: wrap;
   }
   .content {
-    max-width: 980px;
+    max-width: 1300px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -84,10 +92,22 @@ let style = {j|
     padding-top: 104px;
   }
   footer {
-    margin-top: 25px;
     position: relative;
     height: 36px;
     background: #FFF;
     box-shadow: 0px -4px 4px rgba(47, 37, 68, 0.15);
+  }
+  .card .card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .card .card-content span {
+    margin:5px 0px;
+  }
+  .card .card-content .btn {
+    margin-top: 20px;
+    border-radius: 20px;
+    height: 36px;
   }
 |j};

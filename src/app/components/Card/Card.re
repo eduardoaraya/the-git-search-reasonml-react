@@ -1,10 +1,12 @@
 [@react.component]
 let make = (~card) => {
-    <div style=(
+    <div className="card" style=(
       ReactDOM.Style.make(
-        ~margin="10px",
-        ~width="200px",
-        ~height="273px",
+        ~flex="1",
+        ~margin="15px",
+        ~minWidth="295px",
+        ~maxWidth="295px",
+        /* ~maxHeight="273px", */
         ~background="#FFF",
         ~boxShadow="0px 0px 6px rgba(47, 37, 68, 0.25)",
         ~borderRadius="10px", ()))>
@@ -17,9 +19,9 @@ let make = (~card) => {
     <div className="card-content">
       <span className="card-name">{React.string(card##login)}</span>
       <span className="card-profile">
-        <a href={card##html_url}>{React.string(card##html_url)}</a>
+        <a className="link" href={card##html_url}>{React.string(card##html_url)}</a>
       </span>
-      <span className="card-score">{React.string(card##score)}</span>
+      <span className="card-score">{React.string("Score: "++ card##score)}</span>
       <button className="btn">{React.string("Ver mais")}</button>
     </div>
   </div>

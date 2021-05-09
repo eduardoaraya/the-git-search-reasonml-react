@@ -8,6 +8,7 @@ module ApiGithub = {
       fetch(url ++ user)
         |> then_(response => response##json())
         |> then_(jsonResponse => {
+          Js.log(jsonResponse);
           setData(jsonResponse##items);
           Js.Promise.resolve(true);
         })
@@ -18,6 +19,6 @@ module ApiGithub = {
     (search, setData) : (Js.Promise.t(bool)) => 
       switch search {
         | "" => Js.Promise.resolve(false)
-        | search => get(search, setData); 
+        | _ => get(search, setData); 
       }
 };

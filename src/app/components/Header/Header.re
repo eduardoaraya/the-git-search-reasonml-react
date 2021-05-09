@@ -2,6 +2,7 @@ include ApiGithub;
 [@react.component]
 let make = (~setData) => {
   let (text, setText) = React.useState(() => "");
+  /* React.useEffect0(() => Some(() => setData(_ => [||])); */
   let handleClick = _ => {
     let _ = ApiGithub.handleSearch(text, setData);
   };
@@ -26,7 +27,6 @@ let make = (~setData) => {
               ~width="36px",
               ~height="36px",
               ~transform="translate3d(-22px,0,0)",
-              ~background="#8C56C2",
               ~boxShadow="-2px 0px 4px rgba(0, 0, 0, 0.25)",
               ~borderRadius="0px 4px 4px 0px", ()))>
               <img src="src/assets/search.svg" width="100%" alt="logo"/>

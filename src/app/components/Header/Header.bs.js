@@ -46,7 +46,6 @@ function Header(Props) {
                         }), React.createElement("button", {
                           className: "btn",
                           style: {
-                            background: "#8C56C2",
                             height: "36px",
                             padding: "7px",
                             width: "36px",
