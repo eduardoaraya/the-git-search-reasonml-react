@@ -1,9 +1,11 @@
 'use strict';
 
+var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 
 function Card(Props) {
   var card = Props.card;
+  var dispatchViewMoreClick = Props.dispatchViewMoreClick;
   return React.createElement("div", {
               className: "card",
               style: {
@@ -36,7 +38,20 @@ function Card(Props) {
                         }, card.html_url)), React.createElement("span", {
                       className: "card-score"
                     }, "Score: " + card.score), React.createElement("button", {
-                      className: "btn"
+                      className: "btn",
+                      onClick: (function (param) {
+                          return Curry._1(dispatchViewMoreClick, (function (param) {
+                                        return {
+                                                avatar: card.avatar_url,
+                                                username: card.login,
+                                                url: card.html_url,
+                                                date: "",
+                                                followers: 100,
+                                                following: 100,
+                                                modal_opem: true
+                                              };
+                                      }));
+                        })
                     }, "Ver mais")));
 }
 

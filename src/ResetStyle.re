@@ -45,6 +45,11 @@ let style = {j|
     text-transform: uppercase;
     font-weight: bolder;
   }
+  button.btn.btn-void {
+    border: solid 1px $primary;
+    color: $primary;
+    background: #FFF;
+  }
   input {
     position: relative;
     padding: 10px;
@@ -55,6 +60,14 @@ let style = {j|
     border: 1px solid #E1DFE0;
     // box-shadow: 0px 4px 4px rgba(47, 37, 68, 0.15);
     outline: none;
+  }
+  #card-list {
+    justify-content: flex-start;
+  }
+  @media (max-width: 1298px) {
+    #card-list {
+      justify-content: center;
+    }
   }
   .d-flex {
     display: flex;
@@ -109,5 +122,82 @@ let style = {j|
     margin-top: 20px;
     border-radius: 20px;
     height: 36px;
+  }
+  ul, ol {
+    list-style: none;
+  }
+  .overlayer {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 99;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  .overlayer.show {
+    display: flex;
+  }
+  .modal {
+    width: 100%;
+    max-width: 980px;
+    background: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    transform: translate3d(0, -14px, 0);
+    box-shadow: 0px 0px 6px rgba(47, 37, 68, 0.55);
+  }
+  .modal .modal-content {
+    padding: 20px;
+    min-height: 300px;
+  }
+  .modal .modal-content .modal-picture {
+    width: 100%;
+    max-width: 300px;
+    height: 266px;
+    background: #222;
+    margin-right: 20px;
+    overflow: hidden;
+    box-shadow:0px 0px 16px rgba(47, 37, 68, 0.25);
+  }
+  .modal .modal-content .modal-info {
+    width: 100%;
+  }
+  .modal .modal-content .modal-info h1{
+    font-size: 18px;
+  }
+  .modal .modal-content .modal-info-header {
+    width: 100%;
+    padding: 10px 0px;
+    border-bottom: solid 1px #E1DFE0;
+  }
+  .modal .modal-content .modal-info-body {
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: row;
+  } 
+  .modal .modal-content .modal-info-body ul{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  } 
+  .modal .modal-content .modal-info-body ul li{
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .modal .modal-content .modal-info-body ul li p .modal-info-value{
+    color: #7B6490;
+  }
+  .modal .modal-content .modal-info-body ul.right p{
+    text-align: end;
+  }
+  .modal .modal-content .modal-info .modal-info-footer {
+    display: flex;
+    flex-direction: row-reverse;
   }
 |j};
