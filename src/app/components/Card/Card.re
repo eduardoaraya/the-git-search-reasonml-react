@@ -1,5 +1,24 @@
+include ApiGithub;
 [@react.component]
 let make = (~card, ~dispatchViewMoreClick) => {
+  let handleViewMoreClick = 
+      _ => {
+        dispatchViewMoreClick(_ : Modal.user => 
+          {
+            modal_opem: true,
+            avatar: card##avatar_url,
+            username: card##login,
+            url: card##html_url,
+            date: "",
+            following: 100,
+            followers: 100
+        }); 
+        card##login
+          |> ApiGithub.getUser 
+          |> Js.Promise.then_(res => {
+            Js.log(res);
+          });
+    };
     <div className="card" style=(
       ReactDOM.Style.make(
         ~flex="1",
@@ -22,19 +41,7 @@ let make = (~card, ~dispatchViewMoreClick) => {
         <a className="link" href={card##html_url}>{React.string(card##html_url)}</a>
       </span>
       <span className="card-score">{React.string("Score: "++ card##score)}</span>
-      <button className="btn" onClick={
-        _ => dispatchViewMoreClick(_ : Modal.user => {
-          {
-            modal_opem: true,
-            avatar: card##avatar_url,
-            username: card##login,
-            url: card##html_url,
-            date: "",
-            following: 100,
-            followers: 100
-          }
-        });
-      }>{React.string("Ver mais")}</button>
+      <button className="btn" onClick={_ => handleViewMoreClick}>{React.string("Ver mais")}</button>
     </div>
   </div>
 }

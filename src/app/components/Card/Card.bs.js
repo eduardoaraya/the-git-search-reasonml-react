@@ -2,10 +2,24 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
+var ApiGithub$Project = require("../../../services/ApiGithub.bs.js");
 
 function Card(Props) {
   var card = Props.card;
   var dispatchViewMoreClick = Props.dispatchViewMoreClick;
+  var handleViewMoreClick = function (param) {
+    return Curry._1(dispatchViewMoreClick, (function (param) {
+                  return {
+                          avatar: card.avatar_url,
+                          username: card.login,
+                          url: card.html_url,
+                          date: "",
+                          followers: 100,
+                          following: 100,
+                          modal_opem: true
+                        };
+                }));
+  };
   return React.createElement("div", {
               className: "card",
               style: {
@@ -39,23 +53,14 @@ function Card(Props) {
                       className: "card-score"
                     }, "Score: " + card.score), React.createElement("button", {
                       className: "btn",
-                      onClick: (function (param) {
-                          return Curry._1(dispatchViewMoreClick, (function (param) {
-                                        return {
-                                                avatar: card.avatar_url,
-                                                username: card.login,
-                                                url: card.html_url,
-                                                date: "",
-                                                followers: 100,
-                                                following: 100,
-                                                modal_opem: true
-                                              };
-                                      }));
-                        })
+                      onClick: handleViewMoreClick
                     }, "Ver mais")));
 }
 
+var ApiGithub = ApiGithub$Project.ApiGithub;
+
 var make = Card;
 
+exports.ApiGithub = ApiGithub;
 exports.make = make;
 /* react Not a pure module */

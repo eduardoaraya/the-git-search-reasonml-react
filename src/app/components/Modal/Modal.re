@@ -9,10 +9,6 @@ type user = {
 };
 [@react.component]
 let make = (~data: user, ~reset) => {
-  /* let (data: user, setData) = React.useState((): user => {
-    username: "",
-    url: "",
-  }); */
   <div className={ data.modal_opem ? "overlayer show" : "overlayer" }>
     <div className="modal">
       <div className="modal-content">
