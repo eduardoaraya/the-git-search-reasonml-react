@@ -1,20 +1,13 @@
 'use strict';
 
-var Curry = require("bs-platform/lib/js/curry.js");
 
 var urlList = "https://api.github.com/search/users?q=";
 
 var urlUser = "https://api.github.com/users/";
 
-function getList(search, setData) {
+function getList(search) {
   return fetch(urlList + search).then(function (response) {
-                  return response.json();
-                }).then(function (jsonResponse) {
-                console.log(jsonResponse);
-                Curry._1(setData, jsonResponse.items);
-                return Promise.resolve(true);
-              }).catch(function (_err) {
-              return Promise.resolve(false);
+              return response.json();
             });
 }
 
@@ -26,13 +19,7 @@ function getUser(user) {
             });
 }
 
-function handleSearch(search, setData) {
-  if (search === "") {
-    return Promise.resolve(false);
-  } else {
-    return getList(search, setData);
-  }
-}
+var handleSearch = getList;
 
 var ApiGithub = {
   urlList: urlList,

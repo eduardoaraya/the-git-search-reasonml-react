@@ -2,23 +2,33 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
-var ApiGithub$Project = require("../../../services/ApiGithub.bs.js");
+var Actions$Project = require("../../actions/Actions.bs.js");
 
 function Card(Props) {
   var card = Props.card;
-  var dispatchViewMoreClick = Props.dispatchViewMoreClick;
+  var dispatch = Props.dispatch;
+  console.log(card);
   var handleViewMoreClick = function (param) {
-    return Curry._1(dispatchViewMoreClick, (function (param) {
-                  return {
-                          avatar: card.avatar_url,
-                          username: card.login,
-                          url: card.html_url,
-                          date: "",
-                          followers: 100,
-                          following: 100,
-                          modal_opem: true
-                        };
-                }));
+    return Curry._1(dispatch, {
+                type_: /* MoreInfo */1,
+                payload: {
+                  cards: [],
+                  modal: {
+                    id: card.id,
+                    avatar: card.avatar,
+                    login: card.login,
+                    username: card.username,
+                    url: card.url,
+                    date: card.date,
+                    followers: card.followers,
+                    following: card.following,
+                    modal_opem: true,
+                    avatar_url: card.avatar_url,
+                    html_url: card.html_url,
+                    score: card.score
+                  }
+                }
+              });
   };
   return React.createElement("div", {
               className: "card",
@@ -51,16 +61,25 @@ function Card(Props) {
                           href: card.html_url
                         }, card.html_url)), React.createElement("span", {
                       className: "card-score"
-                    }, "Score: " + card.score), React.createElement("button", {
+                    }, "Score: " + String(card.score)), React.createElement("button", {
                       className: "btn",
                       onClick: handleViewMoreClick
                     }, "Ver mais")));
 }
 
-var ApiGithub = ApiGithub$Project.ApiGithub;
+var ApiGithub = Actions$Project.ApiGithub;
+
+var jsToUser = Actions$Project.jsToUser;
+
+var initialState = Actions$Project.initialState;
+
+var reducer = Actions$Project.reducer;
 
 var make = Card;
 
 exports.ApiGithub = ApiGithub;
+exports.jsToUser = jsToUser;
+exports.initialState = initialState;
+exports.reducer = reducer;
 exports.make = make;
 /* react Not a pure module */

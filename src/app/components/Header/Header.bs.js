@@ -2,17 +2,27 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
+var Actions$Project = require("../../actions/Actions.bs.js");
 var ApiGithub$Project = require("../../../services/ApiGithub.bs.js");
 
 function Header(Props) {
-  var setData = Props.setData;
+  var dispatch = Props.dispatch;
   var match = React.useState(function () {
         return "";
       });
   var setText = match[1];
   var text = match[0];
   var handleClick = function (param) {
-    ApiGithub$Project.ApiGithub.handleSearch(text, setData);
+    ApiGithub$Project.ApiGithub.getList(text).then(function (res) {
+          Curry._1(dispatch, {
+                type_: /* Search */0,
+                payload: {
+                  cards: res.items,
+                  modal: Actions$Project.initialState.modal
+                }
+              });
+          return Promise.resolve(res.items);
+        });
     
   };
   return React.createElement("header", {
@@ -61,10 +71,19 @@ function Header(Props) {
                             })))));
 }
 
-var ApiGithub = ApiGithub$Project.ApiGithub;
+var ApiGithub = Actions$Project.ApiGithub;
+
+var jsToUser = Actions$Project.jsToUser;
+
+var initialState = Actions$Project.initialState;
+
+var reducer = Actions$Project.reducer;
 
 var make = Header;
 
 exports.ApiGithub = ApiGithub;
+exports.jsToUser = jsToUser;
+exports.initialState = initialState;
+exports.reducer = reducer;
 exports.make = make;
 /* react Not a pure module */

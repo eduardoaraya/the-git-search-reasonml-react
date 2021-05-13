@@ -1,10 +1,20 @@
-include ApiGithub;
+include Actions;
 [@react.component]
-let make = (~setData) => {
+let make = (~dispatch) => {
+  // let (state, dispatch) = React.useReducer(Actions.reducer, Actions.dataState);
   let (text, setText) = React.useState(() => "");
-  /* React.useEffect0(() => Some(() => setData(_ => [||])); */
-  let handleClick = _ => {
-    let _ = ApiGithub.handleSearch(text, setData);
+  let handleClick = _ =>  {
+    let _ = ApiGithub.getList(text)
+      |> Js.Promise.then_(res => {
+        dispatch({
+          type_: Actions.Search, 
+          payload: {
+            modal: Actions.initialState.modal,
+            cards: res##items
+          }
+        });
+        Js.Promise.resolve(res##items);
+      });
   };
   <header className="header">
     <div className="header-area d-flex row align-center">
