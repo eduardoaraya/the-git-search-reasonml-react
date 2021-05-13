@@ -43,7 +43,10 @@ function App(Props) {
                           dispatch: dispatch
                         }))), React.createElement("footer", {
                   className: "d-flex center align-center"
-                }, "copyrights"));
+                }, React.createElement("a", {
+                      href: "https://github.com/eduardoaraya",
+                      target: "_blank"
+                    }, "Developer by eduardoaraya")));
 }
 
 var ApiGithub = Actions$Project.ApiGithub;

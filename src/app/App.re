@@ -26,6 +26,8 @@ let make = () => {
         <List dispatch cards={state.cards}/>
     </div>
   </div>
-  <footer className="d-flex center align-center">{React.string("copyrights")}</footer>
+  <footer className="d-flex center align-center">
+    <a href="https://github.com/eduardoaraya" target="_blank">{React.string("Developer by eduardoaraya")}</a>
+  </footer>
 </div>
 };

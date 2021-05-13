@@ -19,9 +19,16 @@ let make = (~dispatch, ~state) => {
             </div>  
             <div className="modal-info-body">
               <ul>
-                <li><p>{React.string("Username: ")}</p><p><span className="modal-info-value">{React.string(state.modal.login != "" ? state.modal.login : "...")}</span></p></li>
-                <li><p>{React.string("Cadastro: ")}</p><p><span className="modal-info-value">{React.string(state.modal.created_at != "" ? state.modal.created_at : "...")}</span></p></li>
-                <li><p>{React.string("URL: ")}</p><a href=state.modal.html_url target="_blank"><span className="modal-info-value">{React.string(state.modal.html_url != "" ? state.modal.html_url : "...")}</span></a></li>
+                <li><p>{React.string("Username: ")}</p>
+                  <p><span className="modal-info-value">{React.string(state.modal.login != "" ? state.modal.login : "...")}</span></p>
+                </li>
+                <li>
+                  <p>{React.string("Cadastro: ")}</p><p><span className="modal-info-value">{React.string(state.modal.created_at != "" ? state.modal.created_at : "...")
+                  }</span></p>
+                </li>
+                <li>
+                  <p>{React.string("URL: ")}</p><a href=state.modal.html_url target="_blank"><span className="modal-info-value">{React.string(state.modal.html_url != "" ? state.modal.html_url : "...")}</span></a>
+                </li>
               </ul>
               <ul className="right">
               <li><p>{React.string("Following: ")}</p><p><span className="modal-info-value">{React.string(state.modal.following != -1 ? Belt.Int.toString(state.modal.following) : "...")}</span></p></li>
