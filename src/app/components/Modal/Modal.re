@@ -1,5 +1,4 @@
 include Actions;
-
 [@react.component]
 let make = (~dispatch, ~state) => {
   let close = _ => {

@@ -1,11 +1,10 @@
 include Actions;
 [@react.component]
 let make = (~dispatch) => {
-  // let (state, dispatch) = React.useReducer(Actions.reducer, Actions.dataState);
   let (text, setText) = React.useState(() => "");
   let handleClick = _ =>  {
     switch text {
-      | "" => Js.log("> result")
+      | "" => ()
       | _ =>
        let _ = ApiGithub.getList(text)
           |> Js.Promise.then_(res => {

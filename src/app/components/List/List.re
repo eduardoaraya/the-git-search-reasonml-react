@@ -5,7 +5,6 @@ let make = (~cards: array(Actions.user), ~dispatch) => {
       ReactDOM.Style.make(
         ~width="100%",
         ~padding="35px 0px",
-        /* ~justifyContent="center", */
         ~margin="0 auto", ()))>
         { 
           cards

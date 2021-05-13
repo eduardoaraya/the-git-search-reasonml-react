@@ -1,20 +1,17 @@
 include Actions;
-
-let logoBg = "
+[@react.component]
+let make = () => {
+  let logoBg = "
   center 
   center 
   no-repeat
   url('src/assets/logo-bg.png')";
-
 let resultBg = "
   center 
   center/cover
   no-repeat
   fixed
   url('src/assets/result-bg.png')";
-
-[@react.component]
-let make = () => {
   let (state, dispatch) = React.useReducer(Actions.reducer, Actions.initialState);
   let (bodyStyle, setBodyStyle) = React.useState(() => logoBg);
   React.useEffect1(() => Some(() => setBodyStyle(_ => resultBg)), [|state.cards|]);

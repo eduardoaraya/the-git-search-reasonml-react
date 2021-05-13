@@ -33,21 +33,6 @@ type action = {
   payload: state
 };
 
-// let jsToUser = (data: Js.t('a)): user => { 
-//   id: data##id,
-//   avatar: data##avatar,
-//   name: data##username,
-//   url: data##url,
-//   created_at: data##created_at,
-//   followers: data##followers, 
-//   following: data##following,
-//   modal_opem: data##modal_opem,
-//   avatar_url: data##avatar_url,
-//   login: data##login,
-//   html_url: data##html_url,
-//   score: data##score,
-// } 
-
 let initialState: state = {
   cards: [||],
   modal: {
@@ -81,14 +66,12 @@ let reducer = (state, action: action) => {
       }
     }
     | MoreInfo => {
-      Js.log(action.payload);
       {
         ...state,
         modal: action.payload.modal
       };
     }
     | LoadMoreInfo => {
-      Js.log("More info:");
       {
         ...state,
         modal: action.payload.modal

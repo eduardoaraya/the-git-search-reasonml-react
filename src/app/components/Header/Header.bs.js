@@ -14,7 +14,6 @@ function Header(Props) {
   var text = match[0];
   var handleClick = function (param) {
     if (text === "") {
-      console.log("> result");
       return ;
     }
     ApiGithub$Project.ApiGithub.getList(text).then(function (res) {

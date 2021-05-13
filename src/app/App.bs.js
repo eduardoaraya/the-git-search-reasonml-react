@@ -7,22 +7,18 @@ var Modal$Project = require("./components/Modal/Modal.bs.js");
 var Header$Project = require("./components/Header/Header.bs.js");
 var Actions$Project = require("./actions/Actions.bs.js");
 
-var logoBg = "\n  center \n  center \n  no-repeat\n  url('src/assets/logo-bg.png')";
-
-var resultBg = "\n  center \n  center/cover\n  no-repeat\n  fixed\n  url('src/assets/result-bg.png')";
-
 function App(Props) {
   var match = React.useReducer(Actions$Project.reducer, Actions$Project.initialState);
   var dispatch = match[1];
   var state = match[0];
   var match$1 = React.useState(function () {
-        return logoBg;
+        return "\n  center \n  center \n  no-repeat\n  url('src/assets/logo-bg.png')";
       });
   var setBodyStyle = match$1[1];
   React.useEffect((function () {
           return (function (param) {
                     return Curry._1(setBodyStyle, (function (param) {
-                                  return resultBg;
+                                  return "\n  center \n  center/cover\n  no-repeat\n  fixed\n  url('src/assets/result-bg.png')";
                                 }));
                   });
         }), [state.cards]);
@@ -60,7 +56,5 @@ var make = App;
 exports.ApiGithub = ApiGithub;
 exports.initialState = initialState;
 exports.reducer = reducer;
-exports.logoBg = logoBg;
-exports.resultBg = resultBg;
 exports.make = make;
 /* react Not a pure module */

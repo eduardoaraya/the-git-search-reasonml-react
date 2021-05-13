@@ -26,6 +26,12 @@ var initialState = {
 
 function reducer(state, action) {
   var match = action.type_;
+  if (match >= 3) {
+    return {
+            cards: state.cards,
+            modal: action.payload.modal
+          };
+  }
   switch (match) {
     case /* Search */0 :
         return {
@@ -33,7 +39,6 @@ function reducer(state, action) {
                 modal: state.modal
               };
     case /* MoreInfo */1 :
-        console.log(action.payload);
         return {
                 cards: state.cards,
                 modal: action.payload.modal
@@ -55,12 +60,6 @@ function reducer(state, action) {
                   html_url: "",
                   score: 0
                 }
-              };
-    case /* LoadMoreInfo */3 :
-        console.log("More info:");
-        return {
-                cards: state.cards,
-                modal: action.payload.modal
               };
     
   }
