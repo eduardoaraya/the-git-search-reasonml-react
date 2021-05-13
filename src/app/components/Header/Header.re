@@ -7,16 +7,16 @@ let make = (~dispatch) => {
       | "" => ()
       | _ =>
        let _ = ApiGithub.getList(text)
-          |> Js.Promise.then_(res => {
-            dispatch({
-              type_: Actions.Search, 
-              payload: {
-                modal: Actions.initialState.modal,
-                cards: res##items
-              }
-            });
-            Js.Promise.resolve(res##items);
+        |> Js.Promise.then_(res => {
+          dispatch({
+            type_: Actions.Search, 
+            payload: {
+              modal: Actions.initialState.modal,
+              cards: res##items
+            }
           });
+          Js.Promise.resolve(res##items);
+        });
     }
   };
   <header className="header">
