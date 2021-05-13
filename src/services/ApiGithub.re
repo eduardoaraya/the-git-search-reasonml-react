@@ -8,7 +8,7 @@ module ApiGithub = {
         |> then_(response => response##json())
     );
     
-  let getUser = (user: string) =>
+  let getUser = (user: string) => 
     Js.Promise.(
       fetch(urlUser ++ user)
         |> then_(response => response##json())

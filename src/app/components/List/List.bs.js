@@ -27,8 +27,6 @@ function List(Props) {
 
 var ApiGithub = Actions$Project.ApiGithub;
 
-var jsToUser = Actions$Project.jsToUser;
-
 var initialState = Actions$Project.initialState;
 
 var reducer = Actions$Project.reducer;
@@ -36,7 +34,6 @@ var reducer = Actions$Project.reducer;
 var make = List;
 
 exports.ApiGithub = ApiGithub;
-exports.jsToUser = jsToUser;
 exports.initialState = initialState;
 exports.reducer = reducer;
 exports.make = make;

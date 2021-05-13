@@ -2,32 +2,15 @@
 
 var ApiGithub$Project = require("../../services/ApiGithub.bs.js");
 
-function jsToUser(data) {
-  return {
-          id: data.id,
-          avatar: data.avatar,
-          login: data.login,
-          username: data.username,
-          url: data.url,
-          date: data.date,
-          followers: data.followers,
-          following: data.following,
-          modal_opem: data.modal_opem,
-          avatar_url: data.avatar_url,
-          html_url: data.html_url,
-          score: data.score
-        };
-}
-
 var initialState_cards = [];
 
 var initialState_modal = {
   id: 0,
+  name: "",
   avatar: "",
   login: "",
-  username: "",
   url: "",
-  date: "",
+  created_at: "",
   followers: -1,
   following: -1,
   modal_opem: false,
@@ -56,8 +39,29 @@ function reducer(state, action) {
                 modal: action.payload.modal
               };
     case /* Close */2 :
-        console.log("> Close");
-        return state;
+        return {
+                cards: state.cards,
+                modal: {
+                  id: 0,
+                  name: "",
+                  avatar: "",
+                  login: "",
+                  url: "",
+                  created_at: "",
+                  followers: -1,
+                  following: -1,
+                  modal_opem: false,
+                  avatar_url: "",
+                  html_url: "",
+                  score: 0
+                }
+              };
+    case /* LoadMoreInfo */3 :
+        console.log("More info:");
+        return {
+                cards: state.cards,
+                modal: action.payload.modal
+              };
     
   }
 }
@@ -65,7 +69,6 @@ function reducer(state, action) {
 var ApiGithub = ApiGithub$Project.ApiGithub;
 
 exports.ApiGithub = ApiGithub;
-exports.jsToUser = jsToUser;
 exports.initialState = initialState;
 exports.reducer = reducer;
 /* No side effect */

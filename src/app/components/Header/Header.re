@@ -4,17 +4,21 @@ let make = (~dispatch) => {
   // let (state, dispatch) = React.useReducer(Actions.reducer, Actions.dataState);
   let (text, setText) = React.useState(() => "");
   let handleClick = _ =>  {
-    let _ = ApiGithub.getList(text)
-      |> Js.Promise.then_(res => {
-        dispatch({
-          type_: Actions.Search, 
-          payload: {
-            modal: Actions.initialState.modal,
-            cards: res##items
-          }
-        });
-        Js.Promise.resolve(res##items);
-      });
+    switch text {
+      | "" => Js.log("> result")
+      | _ =>
+       let _ = ApiGithub.getList(text)
+          |> Js.Promise.then_(res => {
+            dispatch({
+              type_: Actions.Search, 
+              payload: {
+                modal: Actions.initialState.modal,
+                cards: res##items
+              }
+            });
+            Js.Promise.resolve(res##items);
+          });
+    }
   };
   <header className="header">
     <div className="header-area d-flex row align-center">

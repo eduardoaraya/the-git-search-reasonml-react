@@ -3,32 +3,56 @@
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var Actions$Project = require("../../actions/Actions.bs.js");
+var ApiGithub$Project = require("../../../services/ApiGithub.bs.js");
 
 function Card(Props) {
   var card = Props.card;
   var dispatch = Props.dispatch;
-  console.log(card);
   var handleViewMoreClick = function (param) {
-    return Curry._1(dispatch, {
-                type_: /* MoreInfo */1,
+    Curry._1(dispatch, {
+          type_: /* MoreInfo */1,
+          payload: {
+            cards: [],
+            modal: {
+              id: card.id,
+              name: card.name,
+              avatar: card.avatar,
+              login: card.login,
+              url: card.url,
+              created_at: "",
+              followers: -1,
+              following: -1,
+              modal_opem: true,
+              avatar_url: card.avatar_url,
+              html_url: card.html_url,
+              score: card.score
+            }
+          }
+        });
+    ApiGithub$Project.ApiGithub.getUser(card.login).then(function (res) {
+          Curry._1(dispatch, {
+                type_: /* LoadMoreInfo */3,
                 payload: {
                   cards: [],
                   modal: {
-                    id: card.id,
-                    avatar: card.avatar,
-                    login: card.login,
-                    username: card.username,
-                    url: card.url,
-                    date: card.date,
-                    followers: card.followers,
-                    following: card.following,
+                    id: res.id,
+                    name: res.name,
+                    avatar: res.avatar,
+                    login: res.login,
+                    url: res.url,
+                    created_at: res.created_at,
+                    followers: res.followers,
+                    following: res.following,
                     modal_opem: true,
-                    avatar_url: card.avatar_url,
-                    html_url: card.html_url,
-                    score: card.score
+                    avatar_url: res.avatar_url,
+                    html_url: res.html_url,
+                    score: res.score
                   }
                 }
               });
+          return Promise.resolve(res);
+        });
+    
   };
   return React.createElement("div", {
               className: "card",
@@ -69,8 +93,6 @@ function Card(Props) {
 
 var ApiGithub = Actions$Project.ApiGithub;
 
-var jsToUser = Actions$Project.jsToUser;
-
 var initialState = Actions$Project.initialState;
 
 var reducer = Actions$Project.reducer;
@@ -78,7 +100,6 @@ var reducer = Actions$Project.reducer;
 var make = Card;
 
 exports.ApiGithub = ApiGithub;
-exports.jsToUser = jsToUser;
 exports.initialState = initialState;
 exports.reducer = reducer;
 exports.make = make;

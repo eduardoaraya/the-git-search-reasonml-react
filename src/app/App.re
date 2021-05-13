@@ -16,9 +16,8 @@ let resultBg = "
 [@react.component]
 let make = () => {
   let (state, dispatch) = React.useReducer(Actions.reducer, Actions.initialState);
-  let (listCards, setListCards) = React.useState(() => [||]);
   let (bodyStyle, setBodyStyle) = React.useState(() => logoBg);
-  React.useEffect1(() => Some(() => setBodyStyle(_ => resultBg)), [|listCards|]);
+  React.useEffect1(() => Some(() => setBodyStyle(_ => resultBg)), [|state.cards|]);
   <div>
   <div className="body-wrapper" style=(ReactDOM.Style.make(~background=bodyStyle,()))>
     <Header dispatch/>

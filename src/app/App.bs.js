@@ -16,23 +16,20 @@ function App(Props) {
   var dispatch = match[1];
   var state = match[0];
   var match$1 = React.useState(function () {
-        return [];
-      });
-  var match$2 = React.useState(function () {
         return logoBg;
       });
-  var setBodyStyle = match$2[1];
+  var setBodyStyle = match$1[1];
   React.useEffect((function () {
           return (function (param) {
                     return Curry._1(setBodyStyle, (function (param) {
                                   return resultBg;
                                 }));
                   });
-        }), [match$1[0]]);
+        }), [state.cards]);
   return React.createElement("div", undefined, React.createElement("div", {
                   className: "body-wrapper",
                   style: {
-                    background: match$2[0]
+                    background: match$1[0]
                   }
                 }, React.createElement(Header$Project.make, {
                       dispatch: dispatch
@@ -51,8 +48,6 @@ function App(Props) {
 
 var ApiGithub = Actions$Project.ApiGithub;
 
-var jsToUser = Actions$Project.jsToUser;
-
 var initialState = Actions$Project.initialState;
 
 var reducer = Actions$Project.reducer;
@@ -60,7 +55,6 @@ var reducer = Actions$Project.reducer;
 var make = App;
 
 exports.ApiGithub = ApiGithub;
-exports.jsToUser = jsToUser;
 exports.initialState = initialState;
 exports.reducer = reducer;
 exports.logoBg = logoBg;

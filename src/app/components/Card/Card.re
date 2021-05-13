@@ -1,24 +1,41 @@
 include Actions;
 [@react.component]
 let make = (~card: Actions.user, ~dispatch) => {
-  Js.log(card);
-  let handleViewMoreClick = _ => dispatch({
-    type_: Actions.MoreInfo,
-    payload: {
-      cards: [||],
-      modal: {
-        ...card,
-        modal_opem: true
+  let handleViewMoreClick = _ => {
+    let _ = dispatch({
+      type_: Actions.MoreInfo,
+      payload: {
+        cards: [||],
+        modal: {
+          ...card,
+          followers: -1,
+          following: -1,
+          created_at: "",
+          modal_opem: true
+        }
       }
-    }
-  });
+    });
+    let _ = ApiGithub.getUser(card.login)
+      |> Js.Promise.then_(res =>  {
+        dispatch({
+          type_: Actions.LoadMoreInfo,
+          payload: {
+            cards: [||],
+            modal: {
+              ...res,
+              modal_opem: true
+            }
+          }
+        });
+      Js.Promise.resolve(res);
+    });
+  };
   <div className="card" style=(
     ReactDOM.Style.make(
       ~flex="1",
       ~margin="15px",
       ~minWidth="295px",
       ~maxWidth="295px",
-      /* ~maxHeight="273px", */
       ~background="#FFF",
       ~boxShadow="0px 0px 6px rgba(47, 37, 68, 0.25)",
       ~borderRadius="10px", ()))>

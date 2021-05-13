@@ -13,6 +13,10 @@ function Header(Props) {
   var setText = match[1];
   var text = match[0];
   var handleClick = function (param) {
+    if (text === "") {
+      console.log("> result");
+      return ;
+    }
     ApiGithub$Project.ApiGithub.getList(text).then(function (res) {
           Curry._1(dispatch, {
                 type_: /* Search */0,
@@ -73,8 +77,6 @@ function Header(Props) {
 
 var ApiGithub = Actions$Project.ApiGithub;
 
-var jsToUser = Actions$Project.jsToUser;
-
 var initialState = Actions$Project.initialState;
 
 var reducer = Actions$Project.reducer;
@@ -82,7 +84,6 @@ var reducer = Actions$Project.reducer;
 var make = Header;
 
 exports.ApiGithub = ApiGithub;
-exports.jsToUser = jsToUser;
 exports.initialState = initialState;
 exports.reducer = reducer;
 exports.make = make;

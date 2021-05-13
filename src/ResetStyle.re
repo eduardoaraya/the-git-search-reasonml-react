@@ -117,6 +117,7 @@ let style = {j|
   }
   .card .card-content span {
     margin:5px 0px;
+    flex: 1;
   }
   .card .card-content .btn {
     margin-top: 20px;
@@ -190,7 +191,11 @@ let style = {j|
     display: flex;
     flex-direction: column;
   }
-  .modal .modal-content .modal-info-body ul li p .modal-info-value{
+  a {
+    text-decoration: none;
+    font-size: .83em;
+  }
+  .modal .modal-content .modal-info-body ul li p .modal-info-value, a{
     color: #7B6490;
   }
   .modal .modal-content .modal-info-body ul.right p{

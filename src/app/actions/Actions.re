@@ -3,15 +3,16 @@ include ApiGithub;
 type actionsTypes = 
   | Search
   | MoreInfo
-  | Close; 
+  | Close
+  | LoadMoreInfo;
 
 type user = {
   id: int,
+  name: string,
   avatar: string,
   login: string,
-  username: string,
   url: string,
-  date: string,
+  created_at: string,
   followers: int, 
   following: int,
   modal_opem: bool,
@@ -32,20 +33,20 @@ type action = {
   payload: state
 };
 
-let jsToUser = (data: Js.t('a)): user => { 
-  id: data##id,
-  avatar: data##avatar,
-  username: data##username,
-  url: data##url,
-  date: data##date,
-  followers: data##followers, 
-  following: data##following,
-  modal_opem: data##modal_opem,
-  avatar_url: data##avatar_url,
-  login: data##login,
-  html_url: data##html_url,
-  score: data##score,
-} 
+// let jsToUser = (data: Js.t('a)): user => { 
+//   id: data##id,
+//   avatar: data##avatar,
+//   name: data##username,
+//   url: data##url,
+//   created_at: data##created_at,
+//   followers: data##followers, 
+//   following: data##following,
+//   modal_opem: data##modal_opem,
+//   avatar_url: data##avatar_url,
+//   login: data##login,
+//   html_url: data##html_url,
+//   score: data##score,
+// } 
 
 let initialState: state = {
   cards: [||],
@@ -53,9 +54,9 @@ let initialState: state = {
     id: 0,
     modal_opem: false,
     avatar: "",
-    username: "",
+    name: "",
     url: "",
-    date: "",
+    created_at: "",
     following: -1,
     followers: -1,
     avatar_url: "",
@@ -74,11 +75,20 @@ let reducer = (state, action: action) => {
       };
     }
     | Close => {
-      Js.log("> Close");
-      state;
+      {
+        ...state,
+        modal: initialState.modal
+      }
     }
     | MoreInfo => {
       Js.log(action.payload);
+      {
+        ...state,
+        modal: action.payload.modal
+      };
+    }
+    | LoadMoreInfo => {
+      Js.log("More info:");
       {
         ...state,
         modal: action.payload.modal
